@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="view-transition" content="same-origin">
   <title>M & N – Wedding Blog</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
@@ -113,7 +114,7 @@
 
     .mini-brand{
       font-family:"Pinyon Script";
-      font-size:1.1rem;
+      font-size:1.3rem;
       letter-spacing:.04em;
       color:#111;
     }
@@ -190,7 +191,7 @@
       right:0;
       top:170px;
       width:min(330px, 80%);
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.75);
       padding:2rem 1.6rem 1.25rem;
       text-align:center;
       z-index:5;
@@ -972,11 +973,153 @@
         width:58%;
       }
     }
+    .password-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(236,235,234,.92)),
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+  backdrop-filter:blur(3px);
+}
+
+.password-card{
+  position:relative;
+  width:min(100%, 520px);
+  padding:4.5rem 2rem 2.2rem;
+  background:rgba(255,255,255,.90);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  text-align:center;
+  overflow:hidden;
+}
+
+.password-script{
+  position:absolute;
+  top:1.2rem;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:"Parisienne", cursive;
+  font-size:clamp(3rem, 8vw, 5.5rem);
+  color:rgba(215,210,205,.8);
+  line-height:1;
+  pointer-events:none;
+}
+
+.password-eyebrow{
+  position:relative;
+  z-index:1;
+  font-size:.58rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:#6f6f6f;
+  margin-bottom:.85rem;
+}
+
+.password-card h2{
+  position:relative;
+  z-index:1;
+  font-family:"Pinyon Script", cursive;
+  font-size:clamp(2.6rem, 6vw, 4.3rem);
+  font-weight:400;
+  color:#1f1f1f;
+  margin:0 0 .6rem;
+}
+
+.password-text{
+  position:relative;
+  z-index:1;
+  max-width:28rem;
+  margin:0 auto 1.6rem;
+  font-family:"Cormorant Garamond", serif;
+  font-size:1.05rem;
+  line-height:1.7;
+  color:#555;
+}
+
+.password-form{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:.75rem;
+  align-items:center;
+  max-width:380px;
+  margin:0 auto;
+}
+
+.password-form input{
+  margin:0;
+  border-radius:0;
+  border:1px solid #d9d6d1;
+  background:rgba(255,255,255,.92);
+  box-shadow:none;
+  font-family:"Inter", sans-serif;
+}
+
+.password-form button{
+  margin:0;
+  border-radius:0;
+  background:#d9d7d3;
+  border:1px solid #c4c1bc;
+  color:#444;
+  padding:.95rem 1.1rem;
+  font-size:.68rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.password-message{
+  min-height:1.2rem;
+  margin-top:1rem;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  color:#8a5a5a;
+}
+
+.password-overlay.is-hidden{
+  display:none;
+}
+
+@media (max-width: 600px){
+  .password-card{
+    padding:4rem 1.2rem 1.8rem;
+  }
+
+  .password-form{
+    grid-template-columns:1fr;
+  }
+
+  .password-form button{
+    width:100%;
+  }
+}
   </style>
 </head>
 <body>
+ <div id="password-overlay" class="password-overlay">
+    <div class="password-card">
+      <div class="password-script">welcome</div>
+      <p class="password-text">
+        Please enter the password to access our wedding blog
+      </p>
 
+      <form id="password-form" class="password-form">
+        <input
+          type="password"
+          id="site-password"
+          placeholder="Enter password" class="password-text"
+          aria-label="Enter password"
+          required
+        />
+        <button type="submit" class="password-text">Enter</button>
+      </form>
 
+      <p id="password-message" class="password-message" aria-live="polite"></p>
+    </div>
+  </div>
   <main class="container" id="home">
     <div class="site-wrap">
       <section>
@@ -995,7 +1138,7 @@
                 <a href="#home" class="mini-nav-text">Home</a>
                 <span><a href="our_story.html" class="mini-nav-text">Our story</a></span>
                 <span><a href="#info" class="mini-nav-text">Information</a></span>
-                <span><a href="#presents" class="mini-nav-text">Presents</a></span>
+                <span><a href="#presents" class="mini-nav-text">Gifts</a></span>
                 <span><a href="#faq" class="mini-nav-text">FAQ</a></span>
               </div>
             </div>
@@ -1093,7 +1236,7 @@
             </div>
 
             <div id="presents" class="feature-spring">
-              <h2>Wedding presents</h2>
+              <h2>Wedding gifts</h2>
 
               <div class="spring-frame">
                 <img src="presents.jpg" alt="Present">
@@ -1101,10 +1244,14 @@
 
               <div class="spring-card">
                 <p>
-                  Instead of traditional wedding presents and cash, we have created a list of meaningful gifts that 
-                  you can contribute to instead of travelling with the wedding gifts to the party.
+                  First of all, no gift is more valuable than having you with us!<br> 
+                  We also do have a list of meaningful gifts that 
+                  you can contribute to instead of travelling with gifts or cash between countries.
                 </p>
-                <a href="our_story.html" class="rule-link" target="_blank">Mariyam Iskendirova & Niko Krohn<br>DEbla bla </a>
+                <a class="rule-link">Mariyam Iskendirova & Niko Krohn
+                <br>DE46 1203 0000 1209 4139 29
+                <br>
+              </a>
               </div>
               <div class="gift-progress">
                 <div class="progress-label">
@@ -1187,6 +1334,30 @@
       Designed and programmed by Mariyam Iskendirova and a few AI friends
     </div>
   </footer>
+<script>
+  (function () {
+    const correctPassword = "areyouready?";
+    const form = document.getElementById("password-form");
+    const input = document.getElementById("site-password");
+    const message = document.getElementById("password-message");
+    const overlay = document.getElementById("password-overlay");
 
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (input.value === correctPassword) {
+        overlay.classList.add("is-hidden");
+        document.body.style.overflow = "";
+      } else {
+        message.textContent = "Incorrect password. Please try again.";
+        input.value = "";
+        input.focus();
+      }
+    });
+
+    document.body.style.overflow = "hidden";
+    input.focus();
+  })();
+</script>
 </body>
 </html>
