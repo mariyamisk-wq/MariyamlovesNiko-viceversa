@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M & N – Wedding Blog</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Italiana&family=Parisienne&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    :root{
+      --bg:#ecebea;
+      --paper:#f4f3f1;
+      --soft:#e7e6e5;
+      --soft-2:#f7f5f2;
+      --ink:#1f1f1f;
+      --muted:#6f6f6f;
+      --line:#d5d2cd;
+      --accent:#8e8e8e;
+      --shadow:0 20px 50px rgba(0,0,0,.12);
+      --shadow-soft:0 10px 28px rgba(0,0,0,.06);
+      --max-card:980px;
+      --radius:0px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f1f1f1 0%, #ecebea 40%, #efeeec 100%);
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4,h5,p{margin:0}
+    a{text-decoration:none}
+    img{display:block;max-width:100%}
+
+    main.container{
+      max-width:100%;
+      padding:0;
+    }
+
+    .site-wrap{
+      width:min(100%, 1440px);
+      margin:0 auto;
+    }
+
+    .hero-bg{
+      position:relative;
+      min-height:800px;
+      padding:3rem 1rem 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.72)),
+        url("C:\\Users\\mariyam.iskendirova\\Downloads\\umfragefoto.png") center/cover no-repeat;
+      overflow:hidden;
+    }
+
+    .hero-bg::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:180px;
+      background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(236,235,234,1));
+    }
+
+    .brand-top{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding-top:1rem;
+      padding-bottom:5.5rem;
+    }
+
+    .brand-top h1{
+      font-family:"Pinyon Script", cursive;
+      font-size:clamp(3rem,8vw,5.5rem);
+      font-weight:400;
+      letter-spacing:.00em;
+      color:#101010;
+    }
+
+    .editorial-card{
+      position:relative;
+      z-index:5;
+      width:min(calc(100% - 2rem), var(--max-card));
+      margin:-20rem auto 0;
+      background:#efefee;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    .card-inner{
+      padding:0;
+    }
+
+    .mini-nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      padding:.95rem 1.25rem;
+      background:rgba(255,255,255,.72);
+      border-bottom:1px solid rgba(0,0,0,.04);
+    }
+
+    .mini-brand{
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.1rem;
+      letter-spacing:.02em;
+      color:#111;
+    }
+
+    .mini-links{
+      display:flex;
+      gap:.85rem;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      font-size:.58rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#555;
+    }
+
+    .mini-links span{white-space:nowrap}
+
+    .mini-nav-text{
+      color:#111
+    }
+
+
+    /* INTRO */
+    .intro-panel{
+      position:relative;
+      padding:7.3rem 8% 5.8rem;
+      text-align:center;
+      background:#efefee;
+      overflow:hidden;
+    }
+
+    .script-word{
+      position:absolute;
+      inset:auto 0 auto 0;
+      top:2.6rem;
+      text-align:center;
+      font-family:"Parisienne",cursive;
+      font-size:clamp(3.6rem,10.5vw,7.4rem);
+      color:rgba(255,255,255,.55);
+      pointer-events:none;
+      line-height:1;
+      z-index:0;
+      transform:translateX(-1%);
+    }
+
+    .intro-panel .eyebrow,
+    .about-block .eyebrow{
+      position:relative;
+      z-index:2;
+      font-size:.56rem;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:#333;
+      margin-bottom:.9rem;
+    }
+
+    .intro-panel p,
+    .about-block p{
+      position:relative;
+      z-index:2;
+      margin:0 auto;
+      font-size:.9rem;
+      line-height:1.92;
+      color:#4d4d4d;
+    }
+
+
+    /* FOOTER */
+    footer.container{
+      max-width:100%;
+      background:#ece9e6;
+      border-top:1px solid rgba(0,0,0,.04);
+      padding:2.9rem 1rem 3.2rem;
+      text-align:center;
+    }
+
+    .footer-menu{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:1rem;
+    }
+
+    .footer-menu a{
+      color:#4a4a4a;
+      font-size:.58rem;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+    }
+
+    .footer-note{
+      color:#666;
+      font-size:.72rem;
+      line-height:1.8;
+      margin-top:.6rem;
+    }
+
+    figure{margin:0}
+    figure img{display:block; width:100%}
+    figcaption a{color:#888; font-size:.75rem}
+
+    @media (max-width: 1100px){
+      .hero-collage{min-height:600px}
+      .cta-box{width:44%}
+    }
+
+    @media (max-width: 900px){
+      .stack-grid{
+        grid-template-columns:1fr;
+        gap:3rem;
+      }
+
+      .stack-item{
+        min-height:360px;
+      }
+
+      .stack-media{
+        width:72%;
+      }
+
+      .stack-card{
+        width:46%;
+      }
+
+      .hero-collage{
+        min-height:670px;
+        padding-inline:1.4rem;
+      }
+
+      .hero-top-strip{
+        grid-template-columns:1fr;
+        height:260px;
+      }
+
+      .hero-top-strip .img-side{
+        display:none;
+      }
+
+      .hero-composition{
+        max-width:640px;
+        min-height:500px;
+      }
+
+      .hero-float-wrap{
+        top:150px;
+        left:7%;
+        width:35%;
+      }
+
+      .hero-callout{
+        top:235px;
+        right:7%;
+        width:42%;
+      }
+
+      .cta-image-band{
+        min-height:520px;
+      }
+
+      .cta-composition{
+        min-height:520px;
+      }
+
+      .cta-image-band .portrait{
+        width:31%;
+        bottom:90px;
+      }
+
+      .cta-box{
+        width:42%;
+        right:7%;
+      }
+    }
+
+    @media (max-width: 700px){
+      nav.container-fluid{
+        position:static;
+      }
+
+      .hero-bg{
+        min-height:300px;
+        padding-top:2rem;
+      }
+
+      .brand-top{
+        padding-bottom:4rem;
+      }
+
+      .editorial-card{
+        width:min(calc(100% - 1rem), var(--max-card));
+        margin-top:-1.2rem;
+      }
+
+      .mini-nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .mini-links{
+        justify-content:flex-start;
+      }
+
+      .hero-collage{
+        min-height:650px;
+        padding:1.2rem 1rem 2.4rem;
+      }
+
+      .hero-top-strip{
+        height:220px;
+      }
+
+      .hero-composition{
+        min-height:520px;
+      }
+
+      .hero-float-wrap{
+        position:relative;
+        left:auto;
+        top:110px;
+        width:min(220px, 47%);
+        margin-left:4%;
+      }
+
+      .hero-collage .img-float{
+        border-width:8px;
+      }
+
+      .hero-callout{
+        right:4%;
+        top:250px;
+        width:50%;
+        padding:1.3rem 1rem 1rem;
+      }
+
+      .intro-panel{
+        padding:5.7rem 1.2rem 4.2rem;
+      }
+
+      .script-word{
+        top:3rem;
+        font-size:clamp(3rem, 14vw, 5.2rem);
+      }
+
+      .stack-section,
+      .feature-spring,
+      .about-block,
+      .mosaic{
+        padding-left:1.2rem;
+        padding-right:1.2rem;
+      }
+
+      .stack-item{
+        min-height:auto;
+        display:flex;
+        flex-direction:column;
+        gap:1rem;
+      }
+
+      .stack-media{
+        width:100%;
+      }
+
+      .stack-card{
+        position:relative;
+        inset:auto;
+        width:100%;
+      }
+
+      .spring-frame img{
+        height:240px;
+      }
+
+      .spring-next{
+        width:min(100%, 520px);
+        font-size:1.7rem;
+        margin-top:.6rem;
+      }
+
+      .cta-image-band{
+        min-height:620px;
+        background-position:center;
+      }
+
+      .cta-composition{
+        min-height:620px;
+        max-width:100%;
+      }
+
+      .cta-image-band .portrait{
+        left:1.2rem;
+        bottom:92px;
+        width:37%;
+        border-width:8px;
+      }
+
+      .cta-box{
+        right:1.2rem;
+        top:40px;
+        width:50%;
+        padding:1.4rem 1rem;
+      }
+
+      .mosaic-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      form.grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 480px){
+      .brand-top h1{
+        font-size:3.2rem;
+      }
+
+      .hero-collage{
+        min-height:660px;
+      }
+
+      .hero-top-strip{
+        height:190px;
+      }
+
+      .hero-composition{
+        min-height:540px;
+      }
+
+      .hero-float-wrap{
+        top:108px;
+        width:49%;
+        margin-left:2%;
+      }
+
+      .hero-callout{
+        width:54%;
+        top:238px;
+        right:2%;
+      }
+
+      .hero-callout h2{
+        font-size:1.85rem;
+      }
+
+      .script-word{
+        top:3.5rem;
+      }
+
+      .about-block .name-script{
+        font-size:3.9rem;
+      }
+
+      .cta-image-band{
+        min-height:590px;
+      }
+
+      .cta-composition{
+        min-height:590px;
+      }
+
+      .cta-image-band .portrait{
+        width:41%;
+        bottom:80px;
+      }
+
+      .cta-box{
+        width:54%;
+        right:.9rem;
+        top:38px;
+      }
+
+      .mosaic-grid{
+        gap:1px;
+        padding:1px;
+      }
+    }
+
+    @media (max-width: 390px){
+      .hero-collage{
+        min-height:690px;
+      }
+
+      .hero-float-wrap{
+        width:52%;
+      }
+
+      .hero-callout{
+        width:58%;
+        top:246px;
+      }
+
+      .cta-image-band{
+        min-height:620px;
+      }
+
+      .cta-composition{
+        min-height:620px;
+      }
+
+      .cta-image-band .portrait{
+        width:44%;
+      }
+
+      .cta-box{
+        width:58%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <main class="container" id="home">
+    <div class="site-wrap">
+      <section>
+        <div class="hero-bg">
+          <div class="brand-top">
+            <h1>Mariyam & Niko</h1>
+          </div>
+        </div>
+
+        <div class="editorial-card">
+          <div class="card-inner">
+
+            <div class="mini-nav">
+              <div class="mini-brand">M&N</div>
+              <div class="mini-links">
+                <a href="#home" class="mini-nav-text">Home</a>
+                <span><a href="#about" class="mini-nav-text">Our story</a></span>
+                <span><a href="#work" class="mini-nav-text">Information</a></span>
+                <span><a href="#style" class="mini-nav-text">Presents</a></span>
+                <span><a href="#blog" class="mini-nav-text">FAQ</a></span>
+              </div>
+            </div>
+            <div class="intro-panel">
+              <div class="script-word">chapter 1</div>
+              <div class="eyebrow">how we met?</div>
+              <p>
+                We are so excited to share our wedding journey with you! This blog will be a space for us 
+                to share our story, our plans, and all the little details that make this experience 
+                so special. We hope you enjoy following along as we prepare for our big day and 
+                create memories that will last a lifetime.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+
+  <footer class="container">
+    <div class="footer-note">
+      Designed and programmed by Mariyam Iskendirova and a few AI friends
+    </div>
+  </footer>
+
+</body>
+</html>

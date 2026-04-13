@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M & N – Wedding Blog</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Italiana&family=Parisienne&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    :root{
+      --bg:#ecebea;
+      --paper:#f4f3f1;
+      --soft:#e7e6e5;
+      --soft-2:#f7f5f2;
+      --ink:#1f1f1f;
+      --muted:#6f6f6f;
+      --line:#d5d2cd;
+      --accent:#8e8e8e;
+      --shadow:0 20px 50px rgba(0,0,0,.12);
+      --shadow-soft:0 10px 28px rgba(0,0,0,.06);
+      --max-card:980px;
+      --radius:0px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f1f1f1 0%, #ecebea 40%, #efeeec 100%);
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4,h5,p{margin:0}
+    a{text-decoration:none}
+    img{display:block;max-width:100%}
+
+    main.container{
+      max-width:100%;
+      padding:0;
+    }
+
+    .site-wrap{
+      width:min(100%, 1440px);
+      margin:0 auto;
+    }
+
+    .hero-bg{
+      position:relative;
+      min-height:800px;
+      padding:3rem 1rem 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.6)),
+        url("MaryNikoSunset.jpeg") center/cover no-repeat;
+      overflow:hidden;
+    }
+
+    .hero-bg::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:180px;
+      background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(236,235,234,1));
+    }
+
+    .brand-top{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding-top:1rem;
+      padding-bottom:5.5rem;
+    }
+
+    .brand-top h1{
+      font-family:"Pinyon Script", cursive;
+      font-size:clamp(3rem,8vw,5.5rem);
+      font-weight:400;
+      letter-spacing:.00em;
+      color:#101010;
+    }
+
+    .editorial-card{
+      position:relative;
+      z-index:5;
+      width:min(calc(100% - 2rem), var(--max-card));
+      margin:-20rem auto 0;
+      background:#efefee;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    .card-inner{
+      padding:0;
+    }
+
+    .mini-nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      padding:.95rem 1.25rem;
+      background:rgba(255,255,255,.72);
+      border-bottom:1px solid rgba(0,0,0,.04);
+    }
+
+    .mini-brand{
+      font-family:"Pinyon Script";
+      font-size:1.1rem;
+      letter-spacing:.04em;
+      color:#111;
+    }
+
+    .mini-links{
+      display:flex;
+      gap:.85rem;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      font-size:.58rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#555;
+    }
+
+    .mini-links span{white-space:nowrap}
+
+    .mini-nav-text{
+      color:#111
+    }
+
+    /* HERO */
+    .hero-collage{
+      position:relative;
+      min-height:620px;
+      background:#ececec;
+      overflow:hidden;
+      padding:2.25rem 2.25rem 3rem;
+    }
+
+    .hero-top-strip{
+      position:absolute;
+      inset:0 0 auto 0;
+      height:286px;
+      display:grid;
+      grid-template-columns:1.4fr .82fr;
+    }
+
+    .hero-top-strip img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(20%);
+    }
+
+    .hero-composition{
+      position:relative;
+      max-width:760px;
+      min-height:470px;
+      margin:0 auto;
+      z-index:2;
+    }
+
+    .hero-float-wrap{
+      position:absolute;
+      left:0;
+      top:108px;
+      width:min(240px, 34%);
+      z-index:4;
+    }
+
+    .hero-collage .img-float{
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      border:12px solid rgba(255,255,255,.88);
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      filter:saturate(.85) brightness(1.03);
+    }
+
+    .hero-callout{
+      position:absolute;
+      right:0;
+      top:170px;
+      width:min(330px, 80%);
+      background:rgba(255,255,255,.7);
+      padding:2rem 1.6rem 1.25rem;
+      text-align:center;
+      z-index:5;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+    }
+
+    .hero-callout h2{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(1.85rem,3vw,2.85rem);
+      font-weight:500;
+      line-height:1.04;
+      letter-spacing:.01em;
+      text-wrap:balance;
+    }
+
+    .thin-button{
+      display:inline-block;
+      margin-top:1rem;
+      border:1px solid #bbb;
+      color:#444;
+      padding:.45rem .95rem;
+      font-size:.62rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      background:rgba(240,240,240,.8);
+    }
+
+    /* INTRO */
+    .intro-panel{
+      position:relative;
+      padding:7.3rem 8% 5.8rem;
+      text-align:center;
+      background:#efefee;
+      overflow:hidden;
+    }
+
+    .script-word{
+      position:absolute;
+      inset:auto 0 auto 0;
+      top:2.6rem;
+      text-align:center;
+      font-family:"Parisienne",cursive;
+      font-size:clamp(3.6rem,10.5vw,7.4rem);
+      color:rgba(255,255,255,.55);
+      pointer-events:none;
+      line-height:1;
+      z-index:0;
+      transform:translateX(-1%);
+    }
+
+    .intro-panel .eyebrow,
+    .about-block .eyebrow{
+      position:relative;
+      z-index:2;
+      font-size:.56rem;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:#333;
+      margin-bottom:.9rem;
+    }
+
+    .intro-panel p,
+    .about-block p{
+      position:relative;
+      z-index:2;
+      max-width:560px;
+      margin:0 auto;
+      font-size:.9rem;
+      line-height:1.92;
+      color:#4d4d4d;
+    }
+
+    .rule-link{
+      display:inline-block;
+      margin-top:1.65rem;
+      padding-top:.7rem;
+      border-top:1px solid #adadad;
+      color:#333;
+      font-size:.58rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      position:relative;
+      z-index:2;
+    }
+
+    /* STACK SECTION */
+    .stack-section{
+      padding:4.7rem 8% 5rem;
+      background:#f4f4f3;
+    }
+
+    .stack-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:0rem 4rem;
+      align-items:start;
+    }
+
+    .stack-item{
+      position:relative;
+      min-height:335px;
+      padding-inline:0;
+    }
+
+    .stack-media{
+      width:70%;
+      position:relative;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .stack-media img{
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      filter:grayscale(40%);
+    }
+
+    .stack-card{
+      position:absolute;
+      width:89%;
+      background:rgba(255,255,255,.9);
+      padding:1.35rem 1.15rem;
+      box-shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    .stack-card h3{
+      font-family:"Cormorant Garamond",serif;
+      font-weight:500;
+      font-size:1.7rem;
+      line-height:1;
+      margin-bottom:.45rem;
+    }
+
+    .stack-card p{
+      font-size:.78rem;
+      line-height:1.8;
+      color:#555;
+      margin-bottom:.65rem;
+    }
+
+    .stack-item.left .stack-media{margin-left:0}
+    .stack-item.left .stack-card{
+      right:2%;
+      bottom:7%;
+    }
+
+    .stack-item.right .stack-media{margin-left:auto}
+    .stack-item.right .stack-card{
+      left:2%;
+      top:8%;
+    }
+
+    /* WEDDING GIFTS*/
+    .feature-spring{
+      padding:5.6rem 8% 5.1rem;
+      background:#ece9e6;
+      text-align:center;
+    }
+
+    .feature-spring h2{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(2.4rem,5vw,4rem);
+      line-height:1.02;
+      font-weight:500;
+      margin-bottom:2.1rem;
+      color:#252525;
+    }
+
+    .spring-frame{
+      position:relative;
+      width:min(100%, 700px);
+      margin:0 auto;
+    }
+
+    .spring-frame img{
+      width:100%;
+      height:350px;
+      object-fit:cover;
+      filter:saturate(.72) brightness(1.02);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .spring-card{
+      position:relative;
+      width:min(86%, 520px);
+      margin:-2.3rem auto 4rem;
+      background:rgba(255,255,255,.96);
+      padding:1.3rem 1.4rem 1rem;
+      box-shadow:0 10px 24px rgba(0,0,0,.05);
+      z-index:2;
+    }
+
+    .spring-card .small{
+      font-size:.55rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#666;
+      margin-bottom:.35rem;
+    }
+
+    .spring-card p{
+      font-size:.8rem;
+      line-height:1.8;
+      color:#555;
+    }
+
+    .spring-next{
+      width:min(100%, 700px);
+      margin:.45rem auto 0;
+      text-align:right;
+      font-family:"Cormorant Garamond",serif;
+      font-size:2rem;
+      color:#c7c7c7;
+      padding-right:.15rem;
+    }
+    .gift-progress{
+  margin: 1.5rem;
+  text-align:center;
+}
+        .bank-details{
+      margin-top:1.65rem;
+      padding-top:.7rem;
+      border-top:1px solid #adadad;
+      position:relative;
+      z-index:2;
+    }
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:.65rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#6f6f6f;
+  margin-bottom:.5rem;
+}
+
+.progress-bar{
+  width:100%;
+  height:6px;
+  background:#e3e0db;
+  position:relative;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  background:#cfcac2;
+  transition:width .6s ease;
+}
+
+/* subtle elegant animation on load */
+.progress-fill::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  animation:shine 2.5s infinite;
+}
+
+@keyframes shine{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+.progress-note{
+  margin-top:.6rem;
+  font-size:1rem;
+  color:#555;
+  font-family:"Cormorant Garamond", serif;
+}
+
+    /* OUR STORY */
+    .about-block{
+      position:relative;
+      padding:5.8rem 8% 6rem;
+      background:#e7e7e7;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .about-block .name-script{
+      position:relative;
+      z-index:0;
+      font-family:"Parisienne",cursive;
+      font-size:clamp(3.2rem,8vw,6rem);
+      color:rgba(255,255,255,.50);
+      line-height:1;
+      margin-bottom:.1rem;
+    }
+
+    /* Blogposts */
+    .cta-image-band{
+      position:relative;
+      min-height:470px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.1) 100%),
+        url("https://images.unsplash.com/photo-1512427691650-15fcce1c55c0?auto=format&fit=crop&w=1600&q=80") center bottom/cover no-repeat;
+      overflow:hidden;
+    }
+
+    .cta-composition{
+      position:relative;
+      min-height:470px;
+      max-width:840px;
+      margin:0 auto;
+    }
+
+    .cta-image-band .portrait{
+      position:absolute;
+      left:4%;
+      bottom:74px;
+      width:min(248px, 31%);
+      aspect-ratio:3/4;
+      object-fit:cover;
+      border:10px solid rgba(255,255,255,.84);
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      filter:grayscale(20%);
+    }
+
+    .cta-box{
+      position:absolute;
+      right:6%;
+      top:62px;
+      width:min(340px, 41%);
+      background:rgba(255,255,255,.92);
+      padding:2rem 1.5rem 1.3rem;
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      text-align:center;
+    }
+
+    .cta-box h3{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(1rem,3vw,1.5rem);
+      line-height:1.05;
+      font-weight:500;
+      text-wrap:balance;
+      margin-bottom:1rem;
+      text-align: left;
+    }
+        .cta-box p{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(0.75rem,3vw,1rem);
+      line-height:1.05;
+      font-weight:500;
+      text-wrap:balance;
+      text-align: left;
+    }
+
+    /* MOSAIC */
+    .mosaic{
+      padding:4rem 8% 5rem;
+      background:#f7f6f4;
+      text-align:center;
+    }
+
+    .mosaic-grid{
+      width:min(100%, 740px);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:2px;
+      background:#e8e5e1;
+      padding:2px;
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
+    }
+
+    .mosaic-grid img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      filter:grayscale(100%);
+      background:#ddd;
+    }
+
+    .mosaic-caption{
+      margin-top:.9rem;
+      font-family:"Cormorant Garamond",serif;
+      font-size:1rem;
+      letter-spacing:.03em;
+      color:#444;
+    }
+
+    /* SUBSCRIBE */
+    section[aria-label="Subscribe example"]{
+      background:#efedea;
+      padding:4.2rem 1rem;
+      border-top:1px solid rgba(0,0,0,.03);
+    }
+
+    section[aria-label="Subscribe example"] article{
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    section[aria-label="Subscribe example"] h2{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(2.2rem,5vw,3.6rem);
+      font-weight:500;
+      margin-bottom:.25rem;
+    }
+
+    section[aria-label="Subscribe example"] h3{
+      color:#666;
+      font-weight:400;
+      font-size:1rem;
+    }
+
+    form.grid{
+      grid-template-columns:1fr 1fr auto;
+      gap:.8rem;
+      max-width:700px;
+      margin:1.5rem auto 0;
+    }
+
+    form.grid input{
+      border-radius:0;
+      background:rgba(255,255,255,.88);
+      border:1px solid #d9d6d1;
+    }
+
+    form.grid button{
+      border-radius:0;
+      background:#d9d7d3;
+      border:1px solid #c4c1bc;
+      color:#444;
+      font-size:.68rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    /* FOOTER */
+    footer.container{
+      max-width:100%;
+      background:#ece9e6;
+      border-top:1px solid rgba(0,0,0,.04);
+      padding:2.9rem 1rem 3.2rem;
+      text-align:center;
+    }
+
+    .footer-menu{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:1rem;
+    }
+
+    .footer-menu a{
+      color:#4a4a4a;
+      font-size:.58rem;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+    }
+
+    .footer-note{
+      color:#666;
+      font-size:.72rem;
+      line-height:1.8;
+      margin-top:.6rem;
+    }
+
+    figure{margin:0}
+    figure img{display:block; width:100%}
+    figcaption a{color:#888; font-size:.75rem}
+
+    @media (max-width: 1100px){
+      .hero-collage{min-height:600px}
+      .cta-box{width:44%}
+    }
+
+    @media (max-width: 900px){
+      .stack-grid{
+        grid-template-columns:1fr;
+        gap:3rem;
+      }
+
+      .stack-item{
+        min-height:360px;
+      }
+
+      .stack-media{
+        width:72%;
+      }
+
+      .stack-card{
+        width:46%;
+      }
+
+      .hero-collage{
+        min-height:670px;
+        padding-inline:1.4rem;
+      }
+
+      .hero-top-strip{
+        grid-template-columns:1fr;
+        height:260px;
+      }
+
+      .hero-top-strip .img-side{
+        display:none;
+      }
+
+      .hero-composition{
+        max-width:640px;
+        min-height:500px;
+      }
+
+      .hero-float-wrap{
+        top:150px;
+        left:7%;
+        width:35%;
+      }
+
+      .hero-callout{
+        top:235px;
+        right:7%;
+        width:42%;
+      }
+
+      .cta-image-band{
+        min-height:520px;
+      }
+
+      .cta-composition{
+        min-height:520px;
+      }
+
+      .cta-image-band .portrait{
+        width:31%;
+        bottom:90px;
+      }
+
+      .cta-box{
+        width:42%;
+        right:7%;
+      }
+    }
+
+    @media (max-width: 700px){
+      nav.container-fluid{
+        position:static;
+      }
+
+      .hero-bg{
+        min-height:300px;
+        padding-top:2rem;
+      }
+
+      .brand-top{
+        padding-bottom:4rem;
+      }
+
+      .editorial-card{
+        width:min(calc(100% - 1rem), var(--max-card));
+        margin-top:-1.2rem;
+      }
+
+      .mini-nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .mini-links{
+        justify-content:flex-start;
+      }
+
+      .hero-collage{
+        min-height:650px;
+        padding:1.2rem 1rem 2.4rem;
+      }
+
+      .hero-top-strip{
+        height:220px;
+      }
+
+      .hero-composition{
+        min-height:520px;
+      }
+
+      .hero-float-wrap{
+        position:relative;
+        left:auto;
+        top:110px;
+        width:min(220px, 47%);
+        margin-left:4%;
+      }
+
+      .hero-collage .img-float{
+        border-width:8px;
+      }
+
+      .hero-callout{
+        right:4%;
+        top:250px;
+        width:50%;
+        padding:1.3rem 1rem 1rem;
+      }
+
+      .intro-panel{
+        padding:5.7rem 1.2rem 4.2rem;
+      }
+
+      .script-word{
+        top:3rem;
+        font-size:clamp(3rem, 14vw, 5.2rem);
+      }
+
+      .stack-section,
+      .feature-spring,
+      .about-block,
+      .mosaic{
+        padding-left:1.2rem;
+        padding-right:1.2rem;
+      }
+
+      .stack-item{
+        min-height:auto;
+        display:flex;
+        flex-direction:column;
+        gap:1rem;
+      }
+
+      .stack-media{
+        width:100%;
+      }
+
+      .stack-card{
+        position:relative;
+        inset:auto;
+        width:100%;
+      }
+
+      .spring-frame img{
+        height:240px;
+      }
+
+      .spring-next{
+        width:min(100%, 520px);
+        font-size:1.7rem;
+        margin-top:.6rem;
+      }
+
+      .cta-image-band{
+        min-height:620px;
+        background-position:center;
+      }
+
+      .cta-composition{
+        min-height:620px;
+        max-width:100%;
+      }
+
+      .cta-image-band .portrait{
+        left:1.2rem;
+        bottom:92px;
+        width:37%;
+        border-width:8px;
+      }
+
+      .cta-box{
+        right:1.2rem;
+        top:40px;
+        width:50%;
+        padding:1.4rem 1rem;
+      }
+
+      .mosaic-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      form.grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 480px){
+      .brand-top h1{
+        font-size:3.2rem;
+      }
+
+      .hero-collage{
+        min-height:660px;
+      }
+
+      .hero-top-strip{
+        height:190px;
+      }
+
+      .hero-composition{
+        min-height:540px;
+      }
+
+      .hero-float-wrap{
+        top:108px;
+        width:49%;
+        margin-left:2%;
+      }
+
+      .hero-callout{
+        width:54%;
+        top:238px;
+        right:2%;
+      }
+
+      .hero-callout h2{
+        font-size:1.85rem;
+      }
+
+      .script-word{
+        top:3.5rem;
+      }
+
+      .about-block .name-script{
+        font-size:3.9rem;
+      }
+
+      .cta-image-band{
+        min-height:590px;
+      }
+
+      .cta-composition{
+        min-height:590px;
+      }
+
+      .cta-image-band .portrait{
+        width:41%;
+        bottom:80px;
+      }
+
+      .cta-box{
+        width:54%;
+        right:.9rem;
+        top:38px;
+      }
+
+      .mosaic-grid{
+        gap:1px;
+        padding:1px;
+      }
+    }
+
+    @media (max-width: 390px){
+      .hero-collage{
+        min-height:690px;
+      }
+
+      .hero-float-wrap{
+        width:52%;
+      }
+
+      .hero-callout{
+        width:58%;
+        top:246px;
+      }
+
+      .cta-image-band{
+        min-height:620px;
+      }
+
+      .cta-composition{
+        min-height:620px;
+      }
+
+      .cta-image-band .portrait{
+        width:44%;
+      }
+
+      .cta-box{
+        width:58%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <main class="container" id="home">
+    <div class="site-wrap">
+      <section>
+        <div class="hero-bg">
+          <div class="brand-top">
+            <h1>Mariyam & Niko</h1>
+          </div>
+        </div>
+
+        <div class="editorial-card">
+          <div class="card-inner">
+
+            <div class="mini-nav">
+              <div class="mini-brand">M&N</div>
+              <div class="mini-links">
+                <a href="#home" class="mini-nav-text">Home</a>
+                <span><a href="our_story.html" class="mini-nav-text">Our story</a></span>
+                <span><a href="#info" class="mini-nav-text">Information</a></span>
+                <span><a href="#presents" class="mini-nav-text">Presents</a></span>
+                <span><a href="#faq" class="mini-nav-text">FAQ</a></span>
+              </div>
+            </div>
+
+            <div class="hero-collage">
+              <div class="hero-top-strip">
+                <img class="img-main" src="greececocktails.jpg" alt="background image behind photo">
+                <img class="img-side" src="Weddingdennislook.jpeg" alt="background image behind welcome">
+              </div>
+
+              <div class="hero-composition">
+                <div class="hero-float-wrap">
+                  <img class="img-float" src="Blogpost1.jpeg" alt="Woman sitting in a bright minimalist fashion portrait">
+                </div>
+
+                <div class="hero-callout">
+                  <h2>Our little wedding blog to share our journey.</h2>
+                </div>
+              </div>
+            </div>
+
+            <div class="intro-panel">
+              <div class="script-word">hello friends</div>
+              <div class="eyebrow">Welcome to our wedding blog</div>
+              <p>
+                We are so excited to share our wedding journey with you! This blog will be a space for us 
+                to share our story, our plans, and all the little details that make this experience 
+                so special. We hope you enjoy following along as we prepare for our big day and 
+                create memories that will last a lifetime.
+              </p>
+              <p><a href="our_story.html" class="rule-link">read our story here</a></p>
+              <a href="#info" class="rule-link">read about the wedding information here</a>
+            </div>
+
+            <div class="stack-section" id="info">
+              <div class="stack-grid">
+                <article class="stack-item left">
+                  <div class="stack-media">
+                    <img src="sunas.webp" alt="wedding location">
+                  </div>
+                  <div class="stack-card">
+                    <h3>Location</h3>
+                    <p>
+                      A beautiful pier overlooking the mediterranean sea. Prepare yourself for breathtaking sea views, firelights and romantic sunset colors.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="stack-item right">
+                  <div class="stack-media">
+                    <img src="dresscode.jpg" alt="Dresscode">
+                  </div>
+                  <div class="stack-card">
+                    <h3>Dresscode</h3>
+                    <p>
+                      Soft, light fabrics, pastel colors, light summer patterns, low-fuzz make up. 
+                      <br>The location is suitable for high heels.
+                      <br>Rules: White is for the bride. No jeans, no sneakers. <br>Show us your fanciest summer outfits! 
+                    </p>
+                    <img src="colorpalette.png" alt="colorpallette" max-width="50%">
+                    <a href="https://pin.it/aMsvRGjHp" target="_blank" class="rule-link">get inspired</a>
+                  </div>
+                </article>
+
+                <article class="stack-item left">
+                  <div class="stack-media">
+                    <img src="transport.jpg" alt="Transport">
+                  </div>
+                  <div class="stack-card">
+                    <h3>Transport</h3>
+                    <p>
+                      We will provide a shuttle bus for all locations during the official wedding program days. 
+                      <br>If you wish to travel privately we recommend ordering local taxi or contact us for car rental options.
+                      <br> In July we will share more information about the possibility of pick-ups. 
+                      <br><strong>Please give us your flight details in the form below.</strong>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="stack-item right">
+                  <div class="stack-media">
+                    <img src="meze.jpg" alt="Meze">
+                  </div>
+                  <div class="stack-card">
+                    <h3>Food</h3>
+                    <p>
+                      We will have a mediterranean meze consisting of many appetizers, a main meat or vegetarian dish and dessert. 
+                      <br>Drinks will also be provided, but we must know in advance if you prefer non-alcoholic drinks.
+                      <br><br> <strong>Please fill out the form below for your food and drink preferences.</strong>
+                    </p>
+                  </div>
+                </article>
+              </div>
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK_X5QpevqbjP5fWZhUTOcNhTnWbAps9SdgXJayEYBaVa1RQ/viewform?embedded=true" width="100%" height="720" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+
+            <div id="presents" class="feature-spring">
+              <h2>Wedding presents</h2>
+
+              <div class="spring-frame">
+                <img src="presents.jpg" alt="Present">
+              </div>
+
+              <div class="spring-card">
+                <p>
+                  Instead of traditional wedding presents and cash, we have created a list of meaningful gifts that 
+                  you can contribute to instead of travelling with the wedding gifts to the party.
+                </p>
+                <a href="our_story.html" class="rule-link" target="_blank">Mariyam Iskendirova & Niko Krohn<br>DEbla bla </a>
+              </div>
+              <div class="gift-progress">
+                <div class="progress-label">
+                  <span>Honeymoon</span>
+                  <span>€0 / €5000</span>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%;"></div>
+                </div>
+              </div>
+                            <div class="gift-progress">
+                <div class="progress-label">
+                  <span>House Downpayment</span>
+                  <span>€0 / €30,000</span>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%;"></div>
+                </div>
+              </div>
+                            <div class="gift-progress">
+                <div class="progress-label">
+                  <span>Food for Maya (our cat)</span>
+                  <span>€0 / €10</span>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-block" id="about">
+              <div class="name-script">Mariyam & Niko</div>
+              <div class="eyebrow">Our story</div>
+              <p>
+                We met in autumn 2019, but only one of us remembers our first meeting. If anyone had told us back
+                then that we are each others soul and life partners we would have laughed. But here we are, hosting 
+                our wedding blog. Isn't life full of surprises? 
+              </p>
+              <a href="our_story.html" class="rule-link" target="_blank">read more</a>
+            </div>
+
+            <div class="cta-image-band">
+              <div class="cta-composition">
+                <img class="portrait" src="Blogpost1.jpeg" alt="Blogpostpicture1">
+
+                <div class="cta-box">
+                  <h3>#1 Thought of the week
+                  </h3>
+                  <p>Wedding planning is all about finding an annoying balance between money, personal choice
+                    and questionning your social norms conditioning.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section aria-label="Subscribe example" id="faq">
+    <div class="container">
+      <article>
+        <hgroup>
+          <h2>FAQs</h2>
+        </hgroup>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc-Y3Zi0AMsjPD8sfHemCATt0KnqFuK_SWqcbcRuJ1LFJCLNA/viewform?embedded=true" 
+          width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </article>
+    </div>
+  </section>
+  
+
+  <footer class="container">
+    <div class="footer-note">
+      Designed and programmed by Mariyam Iskendirova and a few AI friends
+    </div>
+  </footer>
+
+</body>
+</html>
