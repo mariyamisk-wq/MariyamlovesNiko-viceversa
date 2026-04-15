@@ -397,6 +397,9 @@
       line-height:1.8;
       color:#555;
     }
+    .spring-card img{
+      justify-content: center;
+    }
 
     .spring-next{
       width:min(100%, 700px);
@@ -411,13 +414,17 @@
   margin: 1.5rem;
   text-align:center;
 }
-        .bank-details{
-      margin-top:1.65rem;
-      padding-top:.7rem;
-      border-top:1px solid #adadad;
-      position:relative;
-      z-index:2;
-    }
+.bank-details{
+  margin-top:1rem;
+  padding-top:1rem;
+  border-top:1px solid #adadad;
+  text-align:center;
+}
+
+.paypal-logo{
+  width:150px;
+  margin:0.3rem auto 0;
+}
 
 .progress-label{
   display:flex;
@@ -1119,7 +1126,7 @@
 
       <p id="password-message" class="password-message" aria-live="polite"></p>
     </div>
-  </div>
+  </div> 
   <main class="container" id="home">
     <div class="site-wrap">
       <section>
@@ -1248,10 +1255,14 @@
                   We also do have a list of meaningful gifts that 
                   you can contribute to instead of travelling with gifts or cash between countries.
                 </p>
-                <a class="rule-link">Mariyam Iskendirova & Niko Krohn
-                <br>DE46 1203 0000 1209 4139 29
-                <br>
-              </a>
+<div class="bank-details">
+  <p>
+    Mariyam Iskendirova
+    <br>LT31 3250 0994 6045 9316
+    <br>or
+  </p>
+  <img src="paypal.jpeg" alt="Paypal" class="paypal-logo">
+</div>
               </div>
               <div class="gift-progress">
                 <div class="progress-label">
@@ -1358,6 +1369,6 @@
     document.body.style.overflow = "hidden";
     input.focus();
   })();
-</script>
+</script> 
 </body>
 </html>
